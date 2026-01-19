@@ -15,11 +15,11 @@ const adminRouter = Router();
 
 adminRouter.route("/login").post(adminLogin);
 adminRouter.route("/register").post(adminRegister);
-adminRouter.route("/get-admin-courses").get(adminGetAllCourses);
+adminRouter.route("/get-admin-courses").get(adminAuth, adminGetAllCourses);
 
-adminRouter.route("/chage-password").post(adminAuth, adminChangePassword);
-adminRouter.route("/update-course").put(adminAuth, adminUpdateCourse);
+adminRouter.route("/change-password").post(adminAuth, adminChangePassword);
 adminRouter.route("/create-course").post(adminAuth, adminCreateCourse);
+adminRouter.route("/update-course/:id").patch(adminAuth, adminUpdateCourse);
 adminRouter.route("/delete-course").delete(adminAuth, adminDeleteCourse);
 
 export default adminRouter;

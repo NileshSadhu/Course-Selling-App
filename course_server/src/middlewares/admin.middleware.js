@@ -4,7 +4,7 @@ export const adminAuth = async (req, res, next) => {
     try {
         const adminAuthHeader = req.headers.authorization;
 
-        if (!adminAuthHeader || !adminAuthHeader.startWith("Bearer")) {
+        if (!adminAuthHeader || !adminAuthHeader.startsWith("Bearer ")) {
             return res.status(401).json({
                 message: "No token provided"
             });
@@ -13,7 +13,7 @@ export const adminAuth = async (req, res, next) => {
         const token = adminAuthHeader.split(" ")[1];
         const decoded = jwt.verify(token, process.env.ADMIN_KEY);
 
-        req.user = decoded;
+        req.admin = decoded;
         next();
 
     } catch (error) {

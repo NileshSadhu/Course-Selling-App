@@ -119,7 +119,7 @@ export const adminChangePassword = async (req, res) => {
             })
         }
 
-        const salt = await bcrypt.salt(8);
+        const salt = await bcrypt.genSalt(8);
         const hashPassword = await bcrypt.hash(newPassword, salt);
 
         admin.password = hashPassword;
@@ -140,7 +140,7 @@ export const adminChangePassword = async (req, res) => {
 
 export const adminUpdateCourse = async (req, res) => {
     try {
-        const id = req.params;
+        const { id } = req.params;
         const adminId = req.admin.id;
 
         const course = await Course.findById(id);

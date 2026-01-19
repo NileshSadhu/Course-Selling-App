@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 export const authCheck = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
@@ -13,6 +15,7 @@ export const authCheck = (req, res, next) => {
 
         next();
     } catch (error) {
+        console.log(error);
         return res.status(401).json({ message: "Invalid or expired token" });
     }
 };
